@@ -1,0 +1,8 @@
+Django==2.1.2
+django-webpack-loader
+djangorestframework
+django-filter
+django-livereload
+python-memcached
+uWSGI
+django-elasticache
