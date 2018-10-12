@@ -51,6 +51,8 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'cloud_net.urls'
@@ -144,10 +146,21 @@ REST_FRAMEWORK = {
 }
 
 # Cache with python-memcached
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': 'my-memcached.0qjnip.0001.use2.cache.amazonaws.com:11211',
+#         # 'LOCATION': '127.0.0.1:11211',
+#     }
+# }
+
+# Redis
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'my-memcached.0qjnip.0001.use2.cache.amazonaws.com:11211',
-        # 'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        }
     }
 }

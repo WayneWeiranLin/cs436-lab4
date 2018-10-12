@@ -30,6 +30,7 @@ RUN apt-get update \
     libmemcached-dev \
     zlib1g-dev \
     build-essential \
+    redis-server \
     && pip3 install --upgrade pip \
     && pip3 install -r requirements.txt \
     && rm -rf /etc/nginx/sites-enabled \
