@@ -10,7 +10,7 @@ WORKDIR /home/ec2-user/
 # Environment for RDS
 ENV RDS_DB_NAME cloudnet
 ENV RDS_HOSTNAME db-cloud-net.cvrnywdkyj6o.us-east-2.rds.amazonaws.com
-ENV RDS_PASSWORD kevinGay0441
+ENV RDS_PASSWORD ******
 ENV RDS_PORT 3306
 ENV RDS_USERNAME wayne
 
