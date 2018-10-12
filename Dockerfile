@@ -5,30 +5,22 @@ EXPOSE 80 8001
 
 # Set the working directory
 # WORKDIR /usr/src/app
-WORKDIR /home/ubuntu/cloud_net
+WORKDIR /home/ec2-user/
 
 # Environment for RDS
-#ENV RDS_DB_NAME cs436
-#ENV RDS_HOSTNAME cs436-db.cwf9oicgjnlk.us-east-2.rds.amazonaws.com
-#ENV RDS_PASSWORD wulindiaoman
-#ENV RDS_PORT 3306
-#ENV RDS_USERNAME root
+ENV RDS_DB_NAME cloudnet
+ENV RDS_HOSTNAME db-cloud-net.cvrnywdkyj6o.us-east-2.rds.amazonaws.com
+ENV RDS_PASSWORD kevinGay0441
+ENV RDS_PORT 3306
+ENV RDS_USERNAME wayne
 
 # Copy the current directory to the container
 COPY . .
 RUN uname
 
-#RUN sudo apt-get update \
-#    && sudo apt-get install -y python3.5 \
-#    python3-dev \
-#    python3-pip
-# Install python, npm and mysql
-
 RUN apt-get update \
-
     && apt-get install -y \
     memcached \
-    # nodejs \
     npm \
     build-essential \
     python3 \
@@ -43,9 +35,7 @@ RUN apt-get update \
     && rm -rf /etc/nginx/sites-enabled \
     && mkdir /etc/nginx/sites-enabled \
     && cp cloud_net_nginx.conf /etc/nginx/sites-enabled/
-    # && npm config set strict-ssl false \
-    # && npm install npm -g
 
 # Start webapp
 ENV PYTHONUNBUFFERED 0
-# CMD /etc/init.d/nginx restart && npm install webpack && npm install && npm run build && npm start_uwsgi
+CMD /etc/init.d/nginx restart && npm install webpack && npm install && npm run build && npm run start_uwsgi

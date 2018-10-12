@@ -25,7 +25,7 @@ SECRET_KEY = 'd*j@x24s9^qu#r(jcm48)t37&7i++(&h&#l^ytr&=y1@p3y2(&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*' , '13.59.152.235' ,'172.31.47.193', '18.222.195.16']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'cloud_net.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 # With sqlite3
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+#    }
+#}
 
 # With mysql
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'cs436',
-        # 'USER': 'admin',
-        # 'PASSWORD': 'amazonaws',
-        # 'HOST': 'RDS_HOSTNAME',
-        # 'PORT': 3306,
-    # }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -147,6 +147,7 @@ REST_FRAMEWORK = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
+        'LOCATION': 'my-memcached.0qjnip.0001.use2.cache.amazonaws.com:11211',
+        # 'LOCATION': '127.0.0.1:11211',
     }
 }

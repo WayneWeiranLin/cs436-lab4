@@ -1,8 +1,9 @@
-Django==2.1.2
+Django==2.0.9
 django-webpack-loader
 djangorestframework
 django-filter
 django-livereload
+mysqlclient
 python-memcached
 uWSGI
 django-elasticache
